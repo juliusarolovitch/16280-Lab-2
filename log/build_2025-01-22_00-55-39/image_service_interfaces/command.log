@@ -1,0 +1,6 @@
+Invoking command in '/home/sheepster/ros2_ws/build/image_service_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sheepster/ros2_ws/src/image_service_interfaces -DCMAKE_INSTALL_PREFIX=/home/sheepster/ros2_ws/install/image_service_interfaces
+Invoked command in '/home/sheepster/ros2_ws/build/image_service_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sheepster/ros2_ws/src/image_service_interfaces -DCMAKE_INSTALL_PREFIX=/home/sheepster/ros2_ws/install/image_service_interfaces
+Invoking command in '/home/sheepster/ros2_ws/build/image_service_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sheepster/ros2_ws/build/image_service_interfaces -- -j4 -l4
+Invoked command in '/home/sheepster/ros2_ws/build/image_service_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sheepster/ros2_ws/build/image_service_interfaces -- -j4 -l4
+Invoking command in '/home/sheepster/ros2_ws/build/image_service_interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sheepster/ros2_ws/build/image_service_interfaces
+Invoked command in '/home/sheepster/ros2_ws/build/image_service_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sheepster/ros2_ws/build/image_service_interfaces

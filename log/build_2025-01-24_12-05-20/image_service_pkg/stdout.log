@@ -1,0 +1,32 @@
+running egg_info
+creating ../../build/image_service_pkg/image_service_pkg.egg-info
+writing ../../build/image_service_pkg/image_service_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/image_service_pkg/image_service_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/image_service_pkg/image_service_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/image_service_pkg/image_service_pkg.egg-info/requires.txt
+writing top-level names to ../../build/image_service_pkg/image_service_pkg.egg-info/top_level.txt
+writing manifest file '../../build/image_service_pkg/image_service_pkg.egg-info/SOURCES.txt'
+reading manifest file '../../build/image_service_pkg/image_service_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/image_service_pkg/image_service_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/sheepster/ros2_ws/build/image_service_pkg/build
+creating /home/sheepster/ros2_ws/build/image_service_pkg/build/lib
+creating /home/sheepster/ros2_ws/build/image_service_pkg/build/lib/image_service_pkg
+copying image_service_pkg/image_service_server.py -> /home/sheepster/ros2_ws/build/image_service_pkg/build/lib/image_service_pkg
+copying image_service_pkg/__init__.py -> /home/sheepster/ros2_ws/build/image_service_pkg/build/lib/image_service_pkg
+copying image_service_pkg/image_service_client.py -> /home/sheepster/ros2_ws/build/image_service_pkg/build/lib/image_service_pkg
+running install
+running install_lib
+copying /home/sheepster/ros2_ws/build/image_service_pkg/build/lib/image_service_pkg/image_service_server.py -> /home/sheepster/ros2_ws/install/image_service_pkg/lib/python3.10/site-packages/image_service_pkg
+copying /home/sheepster/ros2_ws/build/image_service_pkg/build/lib/image_service_pkg/image_service_client.py -> /home/sheepster/ros2_ws/install/image_service_pkg/lib/python3.10/site-packages/image_service_pkg
+byte-compiling /home/sheepster/ros2_ws/install/image_service_pkg/lib/python3.10/site-packages/image_service_pkg/image_service_server.py to image_service_server.cpython-310.pyc
+byte-compiling /home/sheepster/ros2_ws/install/image_service_pkg/lib/python3.10/site-packages/image_service_pkg/image_service_client.py to image_service_client.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/sheepster/ros2_ws/install/image_service_pkg/lib/python3.10/site-packages/image_service_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/image_service_pkg/image_service_pkg.egg-info to /home/sheepster/ros2_ws/install/image_service_pkg/lib/python3.10/site-packages/image_service_pkg-0.0.0-py3.10.egg-info
+running install_scripts
+Installing image_service_client script to /home/sheepster/ros2_ws/install/image_service_pkg/lib/image_service_pkg
+Installing image_service_server script to /home/sheepster/ros2_ws/install/image_service_pkg/lib/image_service_pkg
+writing list of installed files to '/home/sheepster/ros2_ws/build/image_service_pkg/install.log'

@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from image_service_interfaces/srv/ReturnImage.srv
+// generated code does not contain a copyright notice
+
+#include "sensor_msgs/msg/Image.idl"
+
+module image_service_interfaces {
+  module srv {
+    @verbatim (language="comment", text=
+      "Request")
+    struct ReturnImage_Request {
+      sensor_msgs::msg::Image image;
+
+      string some_string;
+    };
+    @verbatim (language="comment", text=
+      "Response")
+    struct ReturnImage_Response {
+      sensor_msgs::msg::Image image;
+    };
+  };
+};

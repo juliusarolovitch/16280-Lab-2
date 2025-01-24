@@ -1,0 +1,4 @@
+srv/ReturnImage.idl
+srv/ReturnImage.srv
+srv/ReturnImage_Request.msg
+srv/ReturnImage_Response.msg

@@ -1,0 +1,4 @@
+[console_scripts]
+image_service_client = image_service_pkg.image_service_client:main
+image_service_server = image_service_pkg.image_service_server:main
+
