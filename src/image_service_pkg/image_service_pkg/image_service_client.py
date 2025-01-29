@@ -24,7 +24,7 @@ class ImageServiceClient(Node):
             self.get_logger().error(f"Failed to read image from {image_path}")
             rclpy.shutdown()
             return
-        image_msg = self.bridge.cv2_to_imgmsg(cv_image, encoding="bgr8")
+        image_msg = self.bridge.cv2_to_imgmsg(cv_image, encoding="rgb8")
         self.req.image = image_msg
         self.req.some_string = f"Image from {image_path}"
 
@@ -33,7 +33,7 @@ class ImageServiceClient(Node):
             response = future.result()
             received_image = response.image
             self.get_logger().info(f"Received response with image of size: {len(received_image.data)} bytes")
-            cv_image = self.bridge.imgmsg_to_cv2(received_image, desired_encoding="bgr8")
+            cv_image = self.bridge.imgmsg_to_cv2(received_image, desired_encoding="rgb8")
             cv2.imshow("Received Image", cv_image)
             cv2.waitKey(3000)  
             cv2.destroyAllWindows()

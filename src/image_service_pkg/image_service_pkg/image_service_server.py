@@ -9,6 +9,17 @@ from sensor_msgs.msg import Image
 from image_service_interfaces.srv import ReturnImage
 from torchvision.models.detection.faster_rcnn import fasterrcnn_resnet50_fpn, FastRCNNPredictor
 
+
+def load(checkpoint_path, device='cuda'):
+    model = fasterrcnn_resnet50_fpn(pretrained=False, max_size=256,min_size=256,num_classes=4)
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    model.to(device)
+    model.eval()
+    return model
+
+
+
 class ImageServiceServer(Node):
     def __init__(self):
         super().__init__('image_service_server')
@@ -18,34 +29,32 @@ class ImageServiceServer(Node):
         self.bridge = CvBridge()
         self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         
-        num_classes = 5  
-        self.model = fasterrcnn_resnet50_fpn(pretrained=False, min_size=64, max_size=64)
-        in_features = self.model.roi_heads.box_predictor.cls_score.in_features
-        self.model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes=num_classes + 1)
+        num_classes = 3  
         
-        model_path = "/home/sheepster/ros2_ws/src/image_service_pkg/image_service_pkg/model.pth"
-        checkpoint = torch.load(model_path, map_location=self.device)
-        self.model.load_state_dict(checkpoint['model_state_dict'] if 'model_state_dict' in checkpoint else checkpoint)
+        model_path = "/home/turtle/16280-Lab-2/src/image_service_pkg/image_service_pkg/model.pth"
+        self.model = load(model_path, device=self.device)
         
         self.model.to(self.device)
         self.model.eval()
         self.get_logger().info('Model loaded and set to evaluation mode.')
         
-        self.labels = {1: "blue", 2: "green", 3: "pink", 4: "red", 5: "yellow"}
+        self.labels = {1: "blue", 2: "green", 3: "red"}
         self.label_colors = {
             "blue": (255, 0, 0),
             "green": (0, 255, 0),
-            "pink": (255, 105, 180),
-            "red": (0, 0, 255),
-            "yellow": (0, 255, 255)
+            "red": (0, 0, 255)
         }
         
     def handle_service(self, request, response):
         self.get_logger().info(f"Received request with string: '{request.some_string}'")
         
-        cv_image = self.bridge.imgmsg_to_cv2(request.image, desired_encoding='bgr8')
+        cv_image = self.bridge.imgmsg_to_cv2(request.image, desired_encoding='rgb8')
         
-        image_tensor = torch.from_numpy(cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)).permute(2,0,1).float() / 255.0
+        image_tensor = torch.from_numpy(cv_image).permute(2,0,1).float() # / 255.0
+        # image_tensor = image_tensor[:, :, [2, 1, 0]] 
+        # image = image.cpu().permute(1, 2, 0).numpy()
+        # image = image[:, :, [2, 1, 0]] 
+        
         image_tensor = image_tensor.to(self.device)
         images = [image_tensor]
         
@@ -55,7 +64,7 @@ class ImageServiceServer(Node):
         self.get_logger().info(f"Predictions: {predictions}")
 
         for box, label, score in zip(predictions[0]['boxes'], predictions[0]['labels'], predictions[0]['scores']):
-            if score < 0.05:  
+            if score < 0.8:  
                 continue
             x_min, y_min, x_max, y_max = box.int().cpu().numpy()
             class_label = self.labels.get(label.item(), "unknown")
@@ -64,7 +73,7 @@ class ImageServiceServer(Node):
             cv2.putText(cv_image, f"{class_label}: {score:.2f}", (x_min, y_min - 5),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
         
-        response.image = self.bridge.cv2_to_imgmsg(cv_image, encoding='bgr8')
+        response.image = self.bridge.cv2_to_imgmsg(cv_image, encoding='rgb8')
         return response
 
 def main(args=None):
